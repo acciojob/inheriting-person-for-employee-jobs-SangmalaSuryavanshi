@@ -1,6 +1,6 @@
 // complete this js code
 
-// Person Class
+// main.js or your script file
 class Person {
     constructor(name, age) {
         this.name = name;
@@ -12,10 +12,9 @@ class Person {
     }
 }
 
-// Employee Class
 class Employee extends Person {
     constructor(name, age, jobTitle) {
-        super(name, age); // Call the parent class constructor
+        super(name, age);
         this.jobTitle = jobTitle;
     }
 
@@ -24,13 +23,29 @@ class Employee extends Person {
     }
 }
 
-// Example Test Case
-const person = new Person("Alice", 25);
-person.greet(); // Expected output: Hello, my name is Alice, I am 25 years old.
+// Expose classes to the window object
+window.Person = Person;
+window.Employee = Employee;
 
-const employee = new Employee("Bob", 30, "Manager");
-employee.jobGreet(); // Expected output: Hello, my name is Bob, I am 30 years old, and my job title is Manager.
 
+describe('Person and Employee Classes', () => {
+    it('should greet correctly for Person', () => {
+        cy.visit(baseUrl + "/main.html"); // Adjust the URL accordingly
+        cy.window().then(win => {
+            const Person = win.Person;
+            const Employee = win.Employee;
+            const person = new Person("Alice", 25);
+            const employee = new Employee("Bob", 30, "Manager");
+            cy.stub(win.console, "log").as("consoleLog");
+
+            person.greet();
+            cy.get("@consoleLog").should("be.calledWith", 'Hello, my name is Alice, I am 25 years old.');
+
+            employee.jobGreet();
+            cy.get("@consoleLog").should("be.calledWith", 'Hello, my name is Bob, I am 30 years old, and my job title is Manager.');
+        });
+    });
+});
 
 
 // function Person(name, age) {}

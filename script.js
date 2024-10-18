@@ -11,18 +11,19 @@ class Person {
         console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
     }
 }
+window.Person = Person;
 
 class Employee extends Person {
     constructor(name, age, jobTitle) {
-        super(name, age); // Call the parent class constructor
-        this.jobTitle = jobTitle; // Initialize the jobTitle property
+        super(name, age);
+        this.jobTitle = jobTitle;
     }
 
     jobGreet() {
-        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`); // Greeting message
+        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
     }
 }
-
+window.Employee = Employee;
 // Create an instance of the Person class
 let person1 = new Person("Alice", 25);
 // Call the greet method on this instance

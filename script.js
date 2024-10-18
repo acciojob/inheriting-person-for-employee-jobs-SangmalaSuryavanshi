@@ -3,12 +3,12 @@
 // main.js or your script file
 class Person {
     constructor(name, age) {
-        this.name = name; // Initialize the name property
-        this.age = age;   // Initialize the age property
+        this.name = name;
+        this.age = age;
     }
 
     greet() {
-        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`); // Greeting message
+        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
     }
 }
 

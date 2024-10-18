@@ -24,15 +24,24 @@ class Employee extends Person {
     }
 }
 window.Employee = Employee;
+
 // Create an instance of the Person class
 let person1 = new Person("Alice", 25);
-// Call the greet method on this instance
-person1.greet();
+// Now you can call methods on this instance
+person1.greet(); // This will print: "Hello, my name is Alice and I am 25 years old."
 
 // Create an instance of the Employee class
 let employee1 = new Employee("Bob", 30, "Manager");
-// Call the jobGreet method on this instance
-employee1.jobGreet();
+// Now you can call methods on this instance
+employee1.jobGreet(); // This will print: "Hello, my name is Bob, I am 30 years old, and my job title is Manager."
+
+cy.window().then(win => {
+    const Person = win.Person;
+    const Employee = win.Employee;
+    const person = new Person("Alice", 25);
+    const employee = new Employee("Bob", 30, "Manager");
+    // ...
+});
 
 // function Person(name, age) {}
 

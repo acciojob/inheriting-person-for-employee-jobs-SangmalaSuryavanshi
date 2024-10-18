@@ -35,13 +35,7 @@ let employee1 = new Employee("Bob", 30, "Manager");
 // Now you can call methods on this instance
 employee1.jobGreet(); // This will print: "Hello, my name is Bob, I am 30 years old, and my job title is Manager."
 
-cy.window().then(win => {
-    const Person = win.Person;
-    const Employee = win.Employee;
-    const person = new Person("Alice", 25);
-    const employee = new Employee("Bob", 30, "Manager");
-    // ...
-});
+
 
 // function Person(name, age) {}
 

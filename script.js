@@ -3,50 +3,35 @@
 // main.js or your script file
 class Person {
     constructor(name, age) {
-        this.name = name;
-        this.age = age;
+        this.name = name; // Initialize the name property
+        this.age = age;   // Initialize the age property
     }
 
     greet() {
-        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
+        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`); // Greeting message
     }
 }
 
 class Employee extends Person {
     constructor(name, age, jobTitle) {
-        super(name, age);
-        this.jobTitle = jobTitle;
+        super(name, age); // Call the parent class constructor
+        this.jobTitle = jobTitle; // Initialize the jobTitle property
     }
 
     jobGreet() {
-        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
+        console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`); // Greeting message
     }
 }
 
-// Expose classes to the window object
-window.Person = Person;
-window.Employee = Employee;
+// Create an instance of the Person class
+let person1 = new Person("Alice", 25);
+// Call the greet method on this instance
+person1.greet();
 
-
-describe('Person and Employee Classes', () => {
-    it('should greet correctly for Person', () => {
-        cy.visit(baseUrl + "/main.html"); // Adjust the URL accordingly
-        cy.window().then(win => {
-            const Person = win.Person;
-            const Employee = win.Employee;
-            const person = new Person("Alice", 25);
-            const employee = new Employee("Bob", 30, "Manager");
-            cy.stub(win.console, "log").as("consoleLog");
-
-            person.greet();
-            cy.get("@consoleLog").should("be.calledWith", 'Hello, my name is Alice, I am 25 years old.');
-
-            employee.jobGreet();
-            cy.get("@consoleLog").should("be.calledWith", 'Hello, my name is Bob, I am 30 years old, and my job title is Manager.');
-        });
-    });
-});
-
+// Create an instance of the Employee class
+let employee1 = new Employee("Bob", 30, "Manager");
+// Call the jobGreet method on this instance
+employee1.jobGreet();
 
 // function Person(name, age) {}
 
